@@ -9,15 +9,26 @@ import java.net.URLClassLoader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * La classe Connexion implémente Runnable pour être lancer dans un Thread.
+ * Elle initie une connexion via un Socket
+ */
 public class Connexion implements Runnable {
+
     public final static int CR = 13;
     public final static int LF = 10;
+
     protected Socket socket;
     protected InputStream in;
     protected OutputStream out;
     protected BufferedInputStream bufIn;
     private Boolean loop;
 
+    /**
+     * Constructeur
+     * Il initialise les flux de sortie et d'entré
+     * @param connexion socket de la connexion
+     */
     public Connexion(Socket connexion) {
         loop = true;
         socket = connexion;
@@ -30,6 +41,11 @@ public class Connexion implements Runnable {
         }
     }
 
+    /**
+     * Surcharge de la méthode run de Runnable
+     * Est implémenté ici le fonctionnement du serveur. On ditingue 3 cas, qui correspondent au 3 modes de fonctionnement
+     * de Java RMI
+     */
     @Override
     public void run() {
         Runtime rt = Runtime.getRuntime();
@@ -117,6 +133,10 @@ public class Connexion implements Runnable {
         }
     }
 
+    /**
+     * Permet d'envoyer un message au socket connecter via l'outputstream
+     * @param cmd message à envoyer
+     */
     protected void sendMessage(String cmd) {
         try {
             out.write((cmd + "\r\n").getBytes());
@@ -125,6 +145,10 @@ public class Connexion implements Runnable {
         }
     }
 
+    /**
+     * Lit les données reçues via l'inputstream sur le buffer associé
+     * @return le message reçu
+     */
     protected String readCommand() {
         int character = -1;
         boolean end = false, crReceived = false;

@@ -9,13 +9,27 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * La class client détient tous les élements nécessaire pour effectuer les 3 types de requetes RMI
+ * Elle hérite de Connexion qui lui permet d'initialiser son socket et établir la connexion avec le serveur.
+ */
 public class Client extends Connexion {
 
 
+    /**
+     * Constructeur
+     * @param ia InetAdress (IP) du serveur
+     * @param port Port du serveur
+     * @throws IOException
+     */
     public Client(InetAddress ia, int port) throws IOException {
         super(new Socket(ia, port));
     }
 
+    /**
+     * Initie la connexion avec le serveur et lance le Thread du Client qui appelle la méthode run
+     * @param args
+     */
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.print("Adresse IP serveur : ");
@@ -48,6 +62,10 @@ public class Client extends Connexion {
     }
 
 
+    /**
+     * Méthode executée une fois le thread lancé, elle permet d'effectuer les requete SOURCEColl, BYTEColl et OBJECTColl de RMI
+     * Le choix est effectué par l'utilisateur. Cette méthode est une surharge de celle de Connexion
+     */
     @Override
     public void run() {
         Scanner sc = new Scanner(System.in);
