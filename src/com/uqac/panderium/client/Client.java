@@ -87,30 +87,30 @@ public class Client extends Connexion {
                 case "1":
                     sendMessage("java");
                     serverResponse = readCommand();
-                    System.out.println("Réponse du server : " + serverResponse);
+                    System.out.println("Réponse du serveur : " + serverResponse);
                     sendFile("files/Calc.java", false);
                     System.out.println("Envoi fichier source\n");
                     serverResponse = readCommand();
-                    System.out.println("Réponse du server : " + serverResponse);
+                    System.out.println("Réponse du serveur : " + serverResponse);
                     serverResponse = readCommand();
-                    System.out.println("Réponse du server : " + serverResponse);
+                    System.out.println("Réponse du serveur : " + serverResponse);
                     break;
                 case "2":
                     sendMessage("class");
                     serverResponse = readCommand();
-                    System.out.println("Réponse du server : " + serverResponse);
+                    System.out.println("Réponse du serveur : " + serverResponse);
                     sendFile("files/Calc.class", true);
                     System.out.println("Envoi fichier binaire\n");
                     serverResponse = readCommand();
-                    System.out.println("Réponse du server : " + serverResponse);
+                    System.out.println("Réponse du serveur : " + serverResponse);
                     serverResponse = readCommand();
-                    System.out.println("Réponse du server : " + serverResponse);
+                    System.out.println("Réponse du serveur : " + serverResponse);
                     break;
                 case "3":
                     sendMessage("object");
                     Calc calc = new Calc();
                     serverResponse = readCommand();
-                    System.out.println("Réponse du server : " + serverResponse);
+                    System.out.println("Réponse du serveur : " + serverResponse);
                     try {
                         //sérialisation dans un fichier
                         File file = new File("files/calc.ser");
@@ -123,9 +123,9 @@ public class Client extends Connexion {
                     }
                     System.out.println("Envoi de l'objet\n");
                     serverResponse = readCommand();
-                    System.out.println("Réponse du server : " + serverResponse);
+                    System.out.println("Réponse du serveur : " + serverResponse);
                     serverResponse = readCommand();
-                    System.out.println("Réponse du server : " + serverResponse);
+                    System.out.println("Réponse du serveur : " + serverResponse);
                     break;
                 case "q":
                     sendMessage("quit");
